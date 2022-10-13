@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,12 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+route::get('/',[HomeController::class, 'index']); 
+
 
 Route::middleware([
     'auth:sanctum',
@@ -30,3 +34,13 @@ Route::middleware([
 
 
 route::get('/redirect',[HomeController::class, 'redirect']);
+
+route::get('/category',[AdminController::class, 'category']);
+
+route::post('/add_category',[AdminController::class, 'add_category']);
+
+route::get('/delete_category/{id}',[AdminController::class, 'delete_category']);
+
+route::get('/add_product',[AdminController::class, 'add_product']);
+
+route::post('/submit_product',[AdminController::class, 'submit_product']);

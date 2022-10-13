@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+
+
+
+    public function index()
+    {
+        return view('frontend.home');
+    }
+
+
     public function redirect()
     {
         $usertype = Auth::user()->usertype;
@@ -19,7 +28,7 @@ class HomeController extends Controller
 
         else{
 
-            return view('dashboard');
+            return view('frontend.home');
         }
     }
 }

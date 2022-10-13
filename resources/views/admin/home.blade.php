@@ -1,3 +1,21 @@
-<x-app-layout>
+@include('admin.header_link')
 
-</x-app-layout>
+    <body class="sb-nav-fixed">
+        @include('admin.navbar')
+        <div id="layoutSidenav">
+            @include('admin.sidebar')
+
+            <div id="layoutSidenav_content">
+
+                <main>
+                    
+                </main>
+
+            </div>
+            
+        </div>
+
+@include('admin.footer_link')
+    </body>
+</html>
+

@@ -44,3 +44,11 @@ route::get('/delete_category/{id}',[AdminController::class, 'delete_category']);
 route::get('/add_product',[AdminController::class, 'add_product']);
 
 route::post('/submit_product',[AdminController::class, 'submit_product']);
+
+route::get('/product_list',[AdminController::class, 'product_list']);
+
+route::get('/delete_product/{id}',[AdminController::class, 'delete_product']);
+
+route::get('/edit_product/{id}',[AdminController::class, 'edit_product']);
+
+route::post('/update_product/{id}',[AdminController::class, 'update_product']);

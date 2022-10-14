@@ -52,3 +52,7 @@ route::get('/delete_product/{id}',[AdminController::class, 'delete_product']);
 route::get('/edit_product/{id}',[AdminController::class, 'edit_product']);
 
 route::post('/update_product/{id}',[AdminController::class, 'update_product']);
+
+route::get('/product_details/{id}',[HomeController::class, 'product_details']);
+
+route::post('/add_cart/{id}',[HomeController::class, 'add_cart']);

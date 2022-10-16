@@ -24,6 +24,11 @@
                         <a class="nav-link" href="{{ url('product_list') }}">Product List</a>
                     </nav>
                 </div>
+
+                <a class="nav-link" href="{{ url('order') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Order
+                </a>
                 
             </div>
         </div>

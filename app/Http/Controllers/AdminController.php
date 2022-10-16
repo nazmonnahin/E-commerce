@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -114,6 +115,13 @@ class AdminController extends Controller
         return back()->with('message','Information Update Successfully');
         
         
+    }
+
+
+    public function order()
+    {
+        $data = Order::all();
+        return view('admin.order',compact('data'));
     }
 
 

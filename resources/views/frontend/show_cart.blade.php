@@ -97,7 +97,7 @@
                 <h1 class="total_peg">Procced to Order </h1>
                 <a href="{{ url('cash_order') }}" class="btn btn-info">Cash on Delivery </a>
 
-                <a href="{{ url('') }}" class="btn btn-warning">Pay using Card </a>
+                <a href="{{ url('stripe', $totalprice) }}" class="btn btn-warning">Pay using Card </a>
               </div>
             </div>
         </div>

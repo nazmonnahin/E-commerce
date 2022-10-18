@@ -43,10 +43,12 @@
                                         <th scope="col">Product Title</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Price</th>
-                                        <th scope="col">Image</th>
+                                        
                                         <th scope="col">Payment Status</th>
                                         <th scope="col">Delivery Status</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Delivery</th>
+                                        <th scope="col">PDF</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -60,13 +62,28 @@
                                         <td>{{ $product->product_title }}</td>
                                         <td>{{ $product->quantity }}</td>
                                         <td>{{ $product->price }}</td>
-                                        <td>
-                                            <img style="height:70px" src="/product_image/{{ $product->image }}" alt="">
-                                        </td>
+                                        
                                         <td>{{ $product->payment_status }}</td>
                                         <td>{{ $product->delivery_status }}</td>
                                         <td>
-                                            <a class="btn btn-danger onclick="return confirm('Are you sure?')"" href="{{ url('delete_product',$product->id) }}">Delete</a>
+                                            <img style="height:70px" src="/product_image/{{ $product->image }}" alt="">
+                                        </td>
+                                        <td>
+
+                                        @if ( $product->delivery_status=='processing')
+
+                                        <a class="btn btn-success" onclick="return confirm('Are you sure?')"  href="{{ url('delivered',$product->id) }}">Delivered</a>  
+                                 
+                                        @else
+
+                                        <p style="color: rgb(255, 0, 149)" >Delivered</p>
+
+                                        @endif
+
+                                        </td>
+
+                                        <td>
+                                            <a class="btn btn-info" href="{{ url('print_pdf', $product->id) }}">Print</a>
                                         </td>
                                       </tr>
                                       @endforeach

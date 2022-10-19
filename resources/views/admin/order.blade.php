@@ -40,8 +40,8 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Phone</th>
                                         <th scope="col">Address</th>
-                                        <th scope="col">Product Title</th>
-                                        <th scope="col">Quantity</th>
+                                        {{-- <th scope="col">Product Title</th> --}}
+                                        {{-- <th scope="col">Quantity</th> --}}
                                         <th scope="col">Price</th>
                                         
                                         <th scope="col">Payment Status</th>
@@ -49,6 +49,7 @@
                                         <th scope="col">Image</th>
                                         <th scope="col">Delivery</th>
                                         <th scope="col">PDF</th>
+                                        <th scope="col">Notification</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -59,8 +60,8 @@
                                         <td>{{ $product->email }}</td>
                                         <td>{{ $product->phone }}</td>
                                         <td>{{ $product->address }}</td>
-                                        <td>{{ $product->product_title }}</td>
-                                        <td>{{ $product->quantity }}</td>
+                                        {{-- <td>{{ $product->product_title }}</td> --}}
+                                        {{-- <td>{{ $product->quantity }}</td> --}}
                                         <td>{{ $product->price }}</td>
                                         
                                         <td>{{ $product->payment_status }}</td>
@@ -84,6 +85,9 @@
 
                                         <td>
                                             <a class="btn btn-info" href="{{ url('print_pdf', $product->id) }}">Print</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('notification',$product->id) }}" class="btn btn-warning" >Send</a>
                                         </td>
                                       </tr>
                                       @endforeach

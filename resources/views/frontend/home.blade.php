@@ -42,11 +42,65 @@
          @include('frontend.products')
       <!-- end product section -->
 
+      {{-- comment start here --}}
+
+
+      <div style="text-align: center">
+         <h1 style="font-size: 30px; text-align:center; padding-top:20px; padding-bottom:20px;">Comment</h1>
+
+         <form action="{{ url('add_comment') }}" method="POST">
+            @csrf
+            <textarea name="comment" style="height: 150px; width:600px" placeholder="Comment something here" ></textarea>
+            <br>
+            <input type="submit" class="btn btn-primary" value="Comment">
+         </form>
+      </div>
+
+      <div style="padding-left: 20%; padding-top:50px;">
+         <h1 style="padding-bottom:20px;">All Comments</h1>
+
+         <div>
+            <b>Yamin</b>
+            <p>This Is My First Comment</p>
+            <a href="javascript::voil(0)" onclick="reply(this)">Reply</a>
+         </div>
+
+         <div>
+            <b>shakil</b>
+            <p>This Is My 2nd Comment</p>
+            <a href="javascript::voil(0)" onclick="reply(this)" >Reply</a>
+         </div>
+
+         <div>
+            <b>moga</b>
+            <p>This Is My 3rd Comment</p>
+            <a href="javascript::voil(0)" onclick="reply(this)" >Reply</a>
+         </div>
+
+         <div style="display: none" class="replyDiv">
+            <textarea placeholder="write something here"></textarea>
+            <br>
+            <a href="" class="btn btn-primary">Reply</a>
+         </div>
+      </div>
+
+
+        {{-- comment end here --}}
+
       <!-- client section -->
          @include('frontend.client')
       <!-- end client section -->
       <!-- footer start -->
          @include('frontend.footer')
+
+
+         <script type="text/javascript">
+            function reply(caller)
+            {
+               $('.replyDiv').insertAfter($(caller));
+               $('.replyDiv').show();
+            }
+         </script>
       
       <!-- jQery -->
       <script src="frontend/js/jquery-3.4.1.min.js"></script>

@@ -12,10 +12,13 @@
     }
     .h1_font{
         font-size: 40px;
-        padding-bottom: 60px;
+        padding-bottom: 30px;
     }
     #btn_color{
         background-color: rgb(29, 34, 34)
+    }
+    .search_option{
+        padding-bottom: 40px;
     }
 </style>
 
@@ -31,6 +34,13 @@
                         <div class=" col-12">
                             <div class="div_center">
                                 <h2 class="h1_font">Order List</h2>
+                                <div class="search_option">
+                                    <form action="{{ url('search') }}" method="GET">
+                                        @csrf
+                                        <input type="text" placeholder="Search Here" name="search">
+                                        <input type="submit" value="search" class="btn btn-outline-primary">
+                                    </form>
+                                </div>
                                 
                                 <table class="table">
                                     <thead>

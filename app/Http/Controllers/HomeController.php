@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Comment;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -215,6 +216,40 @@ class HomeController extends Controller
 
          return redirect('/');
 
+    }
+
+
+    public function show_order()
+    {
+        $user=Auth::user();
+        $userid=$user->id;
+
+        $order=Order::where('user_id','=',$userid)->get();
+
+        return view('frontend.show_order',compact('order'));
+    }
+
+    public function delete_order($id)
+    {
+        $order = Order::find($id);
+
+        $order->delete();
+        return back();
+    }
+
+    public function add_comment(Request $request)
+    {
+        if ( Auth::id() ) {
+            
+            $comment = new Comment;
+
+            $comment->name = Auth::user()->name;
+            $comment->user_id = Auth::user()->id;
+            $comment->comment = $request->comment;
+            $comment->save();
+            return back();
+
+        }
     }
 
 

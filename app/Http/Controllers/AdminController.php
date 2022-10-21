@@ -176,5 +176,15 @@ class AdminController extends Controller
     
     }
 
+    
+    public function search(Request $request)
+    {
+        $searchText = $request->search;
+
+        $data = Order::where('name','LIKE',"%$searchText%")->get(); 
+
+        return view('admin.order',compact('data'));
+    }
+
 
 }

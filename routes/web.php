@@ -76,3 +76,11 @@ route::get('/print_pdf/{id}',[AdminController::class, 'print_pdf']);
 route::get('/notification/{id}',[AdminController::class, 'notification']);
 
 route::post('/send_notification/{id}',[AdminController::class, 'send_notification']);
+
+route::get('/search',[AdminController::class, 'search']);
+
+route::get('/show_order',[HomeController::class, 'show_order']);
+
+route::get('/delete_order/{id}',[HomeController::class, 'delete_order']);
+
+route::post('/add_comment',[HomeController::class, 'add_comment']);

@@ -84,3 +84,5 @@ route::get('/show_order',[HomeController::class, 'show_order']);
 route::get('/delete_order/{id}',[HomeController::class, 'delete_order']);
 
 route::post('/add_comment',[HomeController::class, 'add_comment']);
+
+route::post('/add_reply',[HomeController::class, 'add_reply']);

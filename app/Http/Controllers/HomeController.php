@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Comment;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,9 @@ class HomeController extends Controller
     {
     
         $product = Product::all();
-        return view('frontend.home',compact('product'));
+        $comment=Comment::all();
+        $reply=Reply::all();
+        return view('frontend.home',compact('product','comment','reply'));
     }
 
 
@@ -39,7 +42,11 @@ class HomeController extends Controller
         else{
             $product = Product::all();
 
-            return view('frontend.home',compact('product'));
+            $comment = Comment::all();
+
+            $reply=Reply::all();
+
+            return view('frontend.home',compact('product', 'comment','reply'));
         }
     }
 
@@ -247,6 +254,22 @@ class HomeController extends Controller
             $comment->user_id = Auth::user()->id;
             $comment->comment = $request->comment;
             $comment->save();
+        }
+        return back();
+    }
+
+    public function add_reply(Request $request)
+    {
+        if (Auth::id()) {
+            $reply = new Reply;
+
+            $reply->name=Auth::user()->name;
+            $reply->user_id=Auth::user()->id;
+            $reply->comment_id=$request->commentId;
+            $reply->reply=$request->reply;
+
+            $reply->save();
+
             return back();
 
         }

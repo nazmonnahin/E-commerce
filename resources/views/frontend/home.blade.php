@@ -59,28 +59,36 @@
       <div style="padding-left: 20%; padding-top:50px;">
          <h1 style="padding-bottom:20px;">All Comments</h1>
 
+         @foreach ($comment as $comment)
          <div>
-            <b>Yamin</b>
-            <p>This Is My First Comment</p>
-            <a href="javascript::voil(0)" onclick="reply(this)">Reply</a>
-         </div>
+            <b>{{ $comment->name }}</b>
+            <p>{{ $comment->comment }}</p>
+            <a href="javascript::voil(0)" onclick="reply(this)" data-Commentid="{{ $comment->id }}"><b>Reply</b></a>
+            @foreach ($reply as $rep)
+            @if ($rep->comment_id==$comment->id)
+            <div style="padding-left: 3%; padding-bottom:10px; padding-bottom:10px">
+               <b>{{ $rep->name }}</b>
+               <p>{{ $rep->reply }}</p>
+               <a href="javascript::voil(0)" onclick="reply(this)" data-Commentid="{{ $comment->id }}"><b>Reply</b></a>
 
-         <div>
-            <b>shakil</b>
-            <p>This Is My 2nd Comment</p>
-            <a href="javascript::voil(0)" onclick="reply(this)" >Reply</a>
-         </div>
+            </div>                 
+            @endif
+            @endforeach
 
-         <div>
-            <b>moga</b>
-            <p>This Is My 3rd Comment</p>
-            <a href="javascript::voil(0)" onclick="reply(this)" >Reply</a>
-         </div>
+         </div>   
+         <br>
+         @endforeach
+         
 
          <div style="display: none" class="replyDiv">
-            <textarea placeholder="write something here"></textarea>
+         <form action="{{ url('add_reply') }}" method="POST">
+            @csrf
+            <input type="text" id="commentId" name="commentId" hidden>
+            <textarea name="reply" style="width: 400px" placeholder="write something here"></textarea>
             <br>
-            <a href="" class="btn btn-primary">Reply</a>
+            <button type="submit" class="btn btn-warning">Reply</button>
+            <a href="javascript::void(0);" class="btn btn-danger"  onclick="reply_close(this)" >Close</a>
+         </form>
          </div>
       </div>
 
@@ -97,10 +105,27 @@
          <script type="text/javascript">
             function reply(caller)
             {
+               document.getElementById('commentId').value=$(caller).attr('data-Commentid');
                $('.replyDiv').insertAfter($(caller));
                $('.replyDiv').show();
             }
+
+            function reply_close(caller)
+            {
+               $('.replyDiv').hide();
+            }
          </script>
+
+<script>
+   document.addEventListener("DOMContentLoaded", function(event) { 
+       var scrollpos = localStorage.getItem('scrollpos');
+       if (scrollpos) window.scrollTo(0, scrollpos);
+   });
+
+   window.onbeforeunload = function(e) {
+       localStorage.setItem('scrollpos', window.scrollY);
+   };
+</script>
       
       <!-- jQery -->
       <script src="frontend/js/jquery-3.4.1.min.js"></script>

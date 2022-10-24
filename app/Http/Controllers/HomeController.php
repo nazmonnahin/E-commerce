@@ -7,9 +7,10 @@ use App\Models\Comment;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Reply;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use PhpParser\Node\Stmt\Return_;
 use Session;
 use Stripe;
 
@@ -88,7 +89,7 @@ class HomeController extends Controller
             $cart->quantity = $request->quantity;
 
             $cart->save();
-
+            Alert::success('Product Added To the Cart');
             return redirect()->back();
 
             
@@ -273,6 +274,19 @@ class HomeController extends Controller
             return back();
 
         }
+    }
+
+
+    public function product_search(Request $request)
+    {
+        $comment=Comment::all();
+        $reply=Reply::all();
+
+        $search_text=$request->search;
+
+        $product= Product::where('title','LIKE',"%$search_text%")->GET();
+
+        return view('frontend.home',compact('product','comment','reply'));
     }
 
 

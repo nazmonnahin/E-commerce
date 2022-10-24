@@ -4,6 +4,16 @@
           <h2>
              Our <span>products</span>
           </h2>
+
+          <div style="margin-top: 20px">
+            <form action="{{ url('product_search') }}" method="GET">
+               @csrf
+               <input type="text" name="search" placeholder="Search Here">
+            <br>
+            <input type="submit" value="search">
+            </form>
+          </div>
+
        </div>
        <div class="row">
 
